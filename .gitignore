@@ -1,4 +1,3 @@
 .dub/
-bin/libd_cgi.a
-bin/d_cgi
-obj/
+bin/libcgi_d.a
+example/cgi-bin/cgi_d_test.cgi
