@@ -1,24 +1,24 @@
 # cgi_d
 
-### Utilities for building [CGI] applications in D
+### Utilities for building CGI applications in D
 
-####Why [CGI]?
+####Why CGI?
 
-Well because **New** does not always mean **improved**.  [CGI] programming has been around about as html. It is a very simple and elegante way work with a web server to add dynamic content.  [CGI] applications by nature are RESTful state applications. Just like a web server streams out static .html files, you can have the web server execute your program.  [CGI] programming is not like other programming where you might have a run time loop to keep the program active until directed to close. [CGI] programs do there work and exit.  
+Well because **New** does not always mean **improved**.  CGI programming has been around about as html. It is a very simple and elegante way work with a web server to add dynamic content.  CGI applications by nature are RESTful state applications. Just like a web server streams out static .html files, you can have the web server execute your program.  CGI programming is not like other programming where you might have a run time loop to keep the program active until directed to close. CGI programs do there work and exit.  
 
-Do not confuse [CGI] with fCGI (*Fast [CGI]*). Fast [CGI] programming techniques work differently than [CGI].  There is actually a run time loop in play with Fast [CGI] that keeps the program running to respond to incomming requests handed off to the program by the web server.  If you want Fast [CGI] there are other libraries for that implementation.  
+Do not confuse CGI with fCGI (*Fast CGI*). Fast CGI programming techniques work differently than CGI.  There is actually a run time loop in play with Fast CGI that keeps the program running to respond to incomming requests handed off to the program by the web server.  If you want Fast CGI there are other libraries for that implementation.  
 
-Wait, what did I just Read???  Why would I want to use [CGI] over other web development backend libries then?  Glad you asked, Compared to other web development libraries that add overhead by implementing a full http web server stack inside your program. Let's let web server applications like Apache or Ngnix do what they do best. This means that you program does not control the port it is running on or how many connections it allows, etc... The draw back is that everything is 100% synchronous. However, if you don't need asynchronous comunication (web sockets,etc...) then why add the overhead. let's allow yourselve to concentrate on doing exactly what your program needs to do and exit.  So it may be a shift in thinking if you don't understand [CGI]. Your program get's ran when it needs to be and nothing more than that. You have to write your programs to take a set of inputs and process them, and return a response to those inputs.       
+Wait, what did I just Read???  Why would I want to use CGI over other web development backend libries then?  Glad you asked, Compared to other web development libraries that add overhead by implementing a full http web server stack inside your program. Let's let web server applications like Apache or Ngnix do what they do best. This means that you program does not control the port it is running on or how many connections it allows, etc... The draw back is that everything is 100% synchronous. However, if you don't need asynchronous comunication (web sockets,etc...) then why add the overhead. let's allow yourselve to concentrate on doing exactly what your program needs to do and exit.  So it may be a shift in thinking if you don't understand CGI. Your program get's ran when it needs to be and nothing more than that. You have to write your programs to take a set of inputs and process them, and return a response to those inputs.       
 
-Note: There are fast [CGI] libraries that work with Apache and Nginx too.  Because we know; **You wouldn't use a sledge hammer when you really need a screw driver.** So D seemed to missing a [CGI] library, now you can evaluate your needs for your project and have a full toolbox.  Use the sledge hammer when it's called for, use the screw driver when it called for. Right tools for the right job. 
+Note: There are fast CGI libraries that work with Apache and Nginx too.  Because we know; **You wouldn't use a sledge hammer when you really need a screw driver.** So D seemed to missing a CGI library, now you can evaluate your needs for your project and have a full toolbox.  Use the sledge hammer when it's called for, use the screw driver when it called for. Right tools for the right job. 
 
-####What would I use [CGI] for?
+####What would I use CGI for?
 * RESTful web services (http to it's full potential) 
 * light weight web app development in D
 * streaming services
 * pretty much all types of web development
 
-####How does [CGI] work? 
+####How does CGI work? 
 In a nutshell; Environment variables are set by the web server allowing you some inputs on what to do.  Any content uploaded by the client web browser to the web sever is available to be read in by your program on stdin, and your programs writes output to stdout which the web server then returns back to the client web browser.
 
 If you want to know more I suggest reading ["Sam's Teach Yourself CGI Programming in A WEEK" ISBN: 0-57521-381-8](https://www.amazon.com/Teach-Yourself-Programming-Colburn-Paperback/dp/B011YTOURO/ref=sr_1_3?s=books&ie=UTF8&qid=1477021076&sr=1-3&keywords=sam%27s+teach+yourself+CGI+Programming+in+a+week "Amazon.com"). It's an oldie but a goodie, if your into dead tree books. Otherwise check out the [https://en.wikipedia.org/wiki/Common_Gateway_Interface](https://en.wikipedia.org/wiki/Common_Gateway_Interface "wikipedia") and consult [the body of all human knowledge](https://www.google.com/#q=CGI+programming)
@@ -287,5 +287,3 @@ int main()
     return 0;
 }
 ```
-
-*[CGI]: Common Gateway Interface
