@@ -2,6 +2,7 @@
 	"name": "cgi_d",
 	"version": "0.1.1", 
 	"description": "Utilities for building CGI applications in D",
+	"license": "MIT",
 	"copyright": "Copyright © 2016, Joseph M. Rice",
 	"authors": ["Joseph M. Rice (ricejm01@gmail.com)"],
 	"targetPath": "bin",
