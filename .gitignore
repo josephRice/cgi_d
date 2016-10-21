@@ -1,0 +1,4 @@
+.dub/
+bin/libd_cgi.a
+bin/d_cgi
+obj/

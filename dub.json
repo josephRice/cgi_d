@@ -1,0 +1,21 @@
+{
+	"name": "cgi_d",
+	"version": "0.1.1", 
+	"description": "Utilities for building CGI applications in D",
+	"copyright": "Copyright © 2016, Joseph M. Rice",
+	"authors": ["Joseph M. Rice (ricejm01@gmail.com)"],
+	"targetPath": "bin",
+	"configurations": [
+		{
+			"name": "lib",
+			"targetType": "library"
+		},
+		{
+			"name": "test_app",
+			"targetType": "executable",
+			"targetName": "cgi_d_test.cgi",
+			"targetPath": "./example/cgi-bin/",
+			"mainSourceFile": "./example/source/test_main.d"
+		}
+	]
+}
