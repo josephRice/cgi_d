@@ -2,6 +2,9 @@
 
 ### Utilities for building CGI applications in D
 
+<a href="https://code.dlang.org/packages/cgi_d" title="Go to cgi_d"><img src="https://img.shields.io/dub/v/cgi_d.svg" alt="Dub version"></a>
+<a href="https://code.dlang.org/packages/cgi_d" title="Go to cgi_d"><img src="https://img.shields.io/dub/dt/cgi_d.svg" alt="Dub downloads"></a>
+
 ####Why CGI?
 
 Well because **New** does not always mean **improved**.  CGI programming has been around about as html. It is a very simple and elegante way work with a web server to add dynamic content.  CGI applications by nature are RESTful state applications. Just like a web server streams out static .html files, you can have the web server execute your program.  CGI programming is not like other programming where you might have a run time loop to keep the program active until directed to close. CGI programs do there work and exit.  
