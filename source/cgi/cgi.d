@@ -983,7 +983,7 @@ class CGI {
 		for (i = 0; i != cgiVals.length; ++i) {
 			if (cgiVals[i]) {
 				if (cgiVals[i].type == CGI_VAR_TYPE.FILE) {
-					writefln("Name = (%s) | filename = (%s) |"
+					writefln("Name = (%s) | filename = (%s) |" ~
 							" content-type (%s)| forward = (%d) <br>",
 							cgiVals[i].name,cgiVals[i].fData.filename,
 							cgiVals[i].fData.content_type,cgiVals[i].mode);
@@ -1075,7 +1075,7 @@ class CGI {
 				write("<html>");
 				write("<head>");
 				if (type == MIMETYPE.TEXT_HTML_NO_CACHE) {
-					write("<meta http-equiv=\"CACHE-CONTROL\" "
+					write("<meta http-equiv=\"CACHE-CONTROL\" " ~
 							"content=\"NO-CACHE\">\r\n");
 				}
 			}
