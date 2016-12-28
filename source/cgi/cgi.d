@@ -36,6 +36,15 @@ import std.conv;
 import std.process;
 import std.algorithm;
 import std.uri;
+import std.exception;
+
+
+class CGIException : Exception
+{
+    this(string msg, string file = __FILE__, size_t line = __LINE__) {
+        super(msg, file, line);
+    }
+}
 
 /**
 * this enumeration allows us to describe the type 
@@ -207,6 +216,7 @@ class CGI {
 	string SERVER_PORT;
 	string HTTP_HOST;
 	string REQUEST_URI;
+	string HTTPS;
 	private string custom_content_type;
 	char[] postData;
 	private MIMETYPE mime_type;
@@ -252,10 +262,12 @@ class CGI {
 		HTTP_COOKIE = environment.get("HTTP_COOKIE");
 		HTTP_HOST = environment.get("HTTP_HOST");
 		REQUEST_URI = environment.get("REQUEST_URI");
+		HTTPS = environment.get("HTTPS");
+
 
 		cookie = new COOKIE();
 
-		if (SERVER_PORT == "80") {
+		if (HTTPS != "on") {
 			BASE_URL = "http://"~ SERVER_NAME ~ SCRIPT_NAME;
 		} else {
 			BASE_URL = "https://"~ SERVER_NAME ~ SCRIPT_NAME;
@@ -264,13 +276,21 @@ class CGI {
 		if (REQUEST_METHOD == "POST" || 
 			REQUEST_METHOD == "PUT") {
 			if (CONTENT_LENGTH.length == 0) {
-				//throw exception. 
+				throw new CGIException("ERROR: CONTENT_LENGTH environment variable is not present!");
 			}
 
-			// set our buffer size.  
-			postData = new char[to!int(CONTENT_LENGTH)];
-			// Read it all at once :)
-			stdin.rawRead(postData);
+			int buff_size = to!int(CONTENT_LENGTH);
+
+			if (buff_size != 0) {
+				// set our buffer size.  
+				postData = new char[buff_size];
+				// Read it all at once :)
+				stdin.rawRead(postData);
+			} else {
+				// there is nothing to read so just set an empty buffer
+				postData = new char[0];
+
+			}
 
 			if (CONTENT_TYPE == "application/x-www-form-urlencoded")
 				QUERY_STRING ~= postData.idup;
@@ -318,9 +338,7 @@ class CGI {
 		auto boundary_split = findSplit(CONTENT_TYPE, "boundary=");
 
 		if (boundary_split[2].length <= 0) {
-			// throw new BoundryNotFoundException;
-			ret = -1;
-			return ret;
+			throw new CGIException("ERROR: Could not locate multipart/form-data boundry value!");
 		}
 
 		// for some reason the CONTENT_TYPE boundary does not have the correct 
