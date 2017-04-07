@@ -217,6 +217,7 @@ class CGI {
 	string HTTP_HOST;
 	string REQUEST_URI;
 	string HTTPS;
+	string REMOTE_ADDR;
 	private string custom_content_type;
 	char[] postData;
 	private MIMETYPE mime_type;
@@ -263,7 +264,10 @@ class CGI {
 		HTTP_HOST = environment.get("HTTP_HOST");
 		REQUEST_URI = environment.get("REQUEST_URI");
 		HTTPS = environment.get("HTTPS");
-
+		REMOTE_ADDR = environment.get("HTTP_X_REAL_IP"); // Nginx proxy forwarding
+		if (REMOTE_ADDR.length <= 0) {
+			REMOTE_ADDR = environment.get("REMOTE_ADDR");
+		}
 
 		cookie = new COOKIE();
 
